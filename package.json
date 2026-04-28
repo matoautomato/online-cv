@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "node build.js",
-    "dev": "node build.js --watch"
+    "dev": "node build.js --watch",
+    "test": "node --test 'test/**/*.test.js'"
   },
   "dependencies": {
     "handlebars": "^4.7.8",
