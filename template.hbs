@@ -281,22 +281,79 @@
     }
 
     /* Print styles */
+    @page {
+      size: A4;
+      margin: 12mm 12mm 12mm 12mm;
+    }
+
     @media print {
       .cv-download {
         display: none;
       }
 
+      html {
+        font-size: 9.5pt;
+      }
+
       body {
         padding: 0;
-        font-size: 11pt;
+        max-width: none;
+        line-height: 1.4;
+      }
+
+      .cv-header {
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
       }
 
       .cv-section {
-        break-inside: avoid;
+        margin-bottom: 1.2rem;
       }
 
       .cv-entry {
+        margin-bottom: 0.8rem;
+      }
+
+      /* Keep section headings with their content */
+      .cv-section h2 {
+        break-after: avoid;
+      }
+
+      /* Avoid breaking inside experience entries and simple entries */
+      .cv-entry {
         break-inside: avoid;
+      }
+
+      .cv-simple-entry {
+        break-inside: avoid;
+      }
+
+      /* Prefer page breaks between sections, not inside them */
+      .cv-section {
+        break-inside: auto;
+      }
+
+      /* Prevent orphan bullets */
+      .cv-entry li {
+        orphans: 2;
+        widows: 2;
+      }
+
+      /* Ensure competency tags don't split across pages */
+      .cv-competencies {
+        break-inside: avoid;
+      }
+
+      /* Ensure links print as plain text */
+      a {
+        color: var(--color-text-light);
+        text-decoration: none;
+      }
+
+      /* No background colors in print */
+      .cv-competencies li {
+        background: none;
+        border-color: var(--color-border);
       }
     }
   </style>
