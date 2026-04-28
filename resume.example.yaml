@@ -1,0 +1,130 @@
+basics:
+  name: Jane Doe
+  title: Chief Technology Officer
+  email: jane.doe@example.com
+  phone: "+49 170 1234567"
+  location: Frankfurt am Main, Germany
+  url: https://janedoe.example.com
+  linkedin: https://linkedin.com/in/janedoe
+  summary: >
+    Seasoned technology executive with 20+ years of experience scaling
+    engineering organisations from startup to enterprise. Proven track record
+    in digital transformation, platform strategy, and building
+    high-performance teams across Europe and North America.
+
+competencies:
+  - Digital Transformation
+  - Platform Strategy
+  - Engineering Leadership
+  - Cloud Architecture
+  - Agile at Scale
+  - M&A Technology Due Diligence
+  - Board-Level Communication
+  - P&L Ownership
+
+experience:
+  - role: Chief Technology Officer
+    company: Acme Corp
+    location: Frankfurt am Main
+    workmode: Hybrid
+    start: "2019-01"
+    end: present
+    summary: >
+      Full P&L ownership for technology across a EUR 500M revenue business.
+      Leading a 200-person engineering organisation spanning 4 countries,
+      driving platform modernisation and cloud-first strategy.
+    highlights:
+      - Led a 200-person engineering organisation across 4 countries
+      - Migrated legacy monolith to microservices, reducing deployment time from weeks to hours
+      - Drove cloud-first strategy resulting in 40% infrastructure cost reduction
+      - Established engineering career framework adopted company-wide
+
+  - role: VP Engineering
+    company: Widgets GmbH
+    location: Berlin
+    workmode: On-site
+    start: "2014-06"
+    end: "2018-12"
+    summary: >
+      Scaled the engineering function from early-stage to mature product
+      organisation across 3 product lines, including M&A technical due diligence.
+    highlights:
+      - Scaled engineering team from 15 to 80 across 3 product lines
+      - Introduced continuous delivery pipeline, increasing release cadence 10x
+      - Led technical due diligence for two acquisitions totalling EUR 45M
+
+  - role: Head of Software Development
+    company: StartupXYZ
+    location: Munich
+    workmode: Remote
+    start: "2010-03"
+    end: "2014-05"
+    summary: >
+      First engineering hire. Built the product and team from zero to a
+      500K+ MAU SaaS platform with SOC 2 certification.
+    highlights:
+      - Built the initial product and engineering team from zero to 25
+      - Architected the SaaS platform serving 500K+ monthly active users
+      - Achieved SOC 2 Type II certification within 18 months
+
+achievements:
+  - Awarded "CTO of the Year" by German Tech Awards, 2022
+  - Led the technology workstream for Acme Corp's EUR 200M Series D
+  - Published keynote speaker at QCon, LeadDev, and Web Summit
+
+education:
+  - institution: Technical University of Munich
+    degree: M.Sc. Computer Science
+    year: "2009"
+  - institution: University of Mannheim
+    degree: B.Sc. Business Informatics
+    year: "2007"
+
+boardRoles:
+  - role: Advisory Board Member
+    organisation: TechFoundation e.V.
+    start: "2021"
+    end: present
+    description: Advising on open-source strategy and developer ecosystem growth
+
+volunteering:
+  - role: Mentor
+    organisation: ReDI School of Digital Integration
+    start: "2020"
+    end: present
+    description: Mentoring refugees and newcomers in software engineering careers
+  - role: Coach
+    organisation: Techstars Berlin
+    start: "2018"
+    end: "2019"
+    description: Coached early-stage founders on technical strategy and team building
+
+certifications:
+  - name: AWS Solutions Architect Professional
+    year: "2020"
+  - name: TOGAF 9 Certified
+    year: "2017"
+
+languages:
+  - language: German
+    level: Native
+  - language: English
+    level: Fluent (C2)
+  - language: French
+    level: Intermediate (B1)
+
+publications:
+  - title: "Scaling Engineering Teams: Lessons from the Trenches"
+    venue: LeadDev Berlin
+    year: "2023"
+    type: talk
+  - title: "The CTO's Guide to Platform Thinking"
+    venue: InfoQ
+    year: "2022"
+    type: article
+
+interests:
+  - Open-source software
+  - Distributed systems
+  - Cycling
+  - Jazz piano
