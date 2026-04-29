@@ -100,10 +100,8 @@ volunteering:
     description: Coached early-stage founders on technical strategy and team building
 
 certifications:
-  - name: AWS Solutions Architect Professional
-    year: "2020"
-  - name: TOGAF 9 Certified
-    year: "2017"
+  - AWS Solutions Architect Professional
+  - TOGAF 9 Certified
 
 languages:
   - language: German

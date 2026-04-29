@@ -7,11 +7,20 @@ import yaml from 'js-yaml';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const resumePath = process.argv.includes('--watch')
-  ? (process.argv.filter(a => a !== '--watch')[2] || resolve(__dirname, 'resume.example.yaml'))
-  : (process.argv[2] || resolve(__dirname, 'resume.example.yaml'));
+const flags = ['--watch', '--output'];
+const args = process.argv.slice(2).filter(a => {
+  if (flags.includes(a)) return false;
+  const prev = process.argv[process.argv.indexOf(a) - 1];
+  return !flags.includes(prev);
+});
+const resumePath = args[0]
+  ? resolve(process.cwd(), args[0])
+  : resolve(__dirname, 'resume.example.yaml');
 const templatePath = resolve(__dirname, 'template.hbs');
-const outputDir = resolve(__dirname, 'dist');
+const outputIdx = process.argv.indexOf('--output');
+const outputDir = outputIdx !== -1 && process.argv[outputIdx + 1]
+  ? resolve(process.cwd(), process.argv[outputIdx + 1])
+  : resolve(__dirname, 'dist');
 const outputPath = resolve(outputDir, 'index.html');
 
 const REQUIRED_FIELDS = ['basics.name', 'basics.title'];

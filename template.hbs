@@ -367,7 +367,7 @@
       {{#if basics.location}}<span>{{basics.location}}</span>{{/if}}
       {{#if basics.email}}<a href="mailto:{{basics.email}}">{{basics.email}}</a>{{/if}}
       {{#if basics.phone}}<span>{{basics.phone}}</span>{{/if}}
-      {{#if basics.url}}<a href="{{basics.url}}">{{basics.url}}</a>{{/if}}
+      {{#if basics.url}}<a href="https://{{basics.url}}">{{basics.url}}</a>{{/if}}
       {{#if basics.linkedin}}<a href="{{basics.linkedin}}">LinkedIn</a>{{/if}}
     </div>
   </header>
@@ -476,14 +476,13 @@
     {{/if}}
 
     {{#if certifications}}
-    <section class="cv-section">
+    <section class="cv-section cv-competencies">
       <h2>Certifications</h2>
-      {{#each certifications}}
-      <div class="cv-simple-entry">
-        <div class="main-line">{{name}}</div>
-        {{#if year}}<div class="detail-line">{{year}}</div>{{/if}}
-      </div>
-      {{/each}}
+      <ul>
+        {{#each certifications}}
+        <li>{{this}}</li>
+        {{/each}}
+      </ul>
     </section>
     {{/if}}
 
