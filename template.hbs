@@ -4,10 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{basics.name}} — {{basics.title}}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,400&display=swap" rel="stylesheet">
   <style>
+    /* Self-hosted Inter (OFL), inlined by build.js — no external requests. */
+    @font-face {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url({{{_fonts.interNormal}}}) format("woff2");
+    }
+    @font-face {
+      font-family: "Inter";
+      font-style: italic;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url({{{_fonts.interItalic}}}) format("woff2");
+    }
+
     *, *::before, *::after {
       margin: 0;
       padding: 0;
@@ -355,6 +368,31 @@
         background: none;
         border-color: var(--color-border);
       }
+
+      /* De-grid keyword sections: keep the heading directly above its items in the
+         extracted text stream (flex layout can scramble reading order). Screen keeps the tag grid. */
+      .cv-competencies ul,
+      .cv-languages ul,
+      .cv-interests ul {
+        display: block;
+      }
+
+      .cv-competencies li,
+      .cv-languages li,
+      .cv-interests li {
+        display: inline;
+        padding: 0;
+        border: none;
+        background: none;
+        border-radius: 0;
+        font-size: inherit;
+      }
+
+      .cv-competencies li:not(:last-child)::after,
+      .cv-languages li:not(:last-child)::after,
+      .cv-interests li:not(:last-child)::after {
+        content: ", ";
+      }
     }
   </style>
 </head>
@@ -368,21 +406,21 @@
       {{#if basics.email}}<a href="mailto:{{basics.email}}">{{basics.email}}</a>{{/if}}
       {{#if basics.phone}}<span>{{basics.phone}}</span>{{/if}}
       {{#if basics.url}}<a href="https://{{basics.url}}">{{basics.url}}</a>{{/if}}
-      {{#if basics.linkedin}}<a href="{{basics.linkedin}}">LinkedIn</a>{{/if}}
+      {{#if basics.linkedin}}<a href="{{basics.linkedin}}">{{stripScheme basics.linkedin}}</a>{{/if}}
     </div>
   </header>
 
   <main>
     {{#if basics.summary}}
     <section class="cv-section cv-summary">
-      <h2>Executive Summary</h2>
+      <h2>Summary</h2>
       <p>{{basics.summary}}</p>
     </section>
     {{/if}}
 
     {{#if competencies}}
     <section class="cv-section cv-competencies">
-      <h2>Core Competencies</h2>
+      <h2>Skills</h2>
       <ul>
         {{#each competencies}}
         <li>{{this}}</li>
@@ -409,7 +447,7 @@
       <article class="cv-entry">
         <div class="cv-entry-header">
           <h3>{{role}} — {{company}}</h3>
-          <span class="dates">{{start}} – {{end}}</span>
+          <span class="dates">{{fmtDate start}} – {{fmtDate end}}</span>
         </div>
         {{#if location}}
         <div class="subtitle">{{location}}{{#if workmode}} · {{workmode}}{{/if}}</div>
@@ -436,7 +474,7 @@
       <article class="cv-entry">
         <div class="cv-entry-header">
           <h3>{{role}} — {{organisation}}</h3>
-          <span class="dates">{{start}} – {{end}}</span>
+          <span class="dates">{{fmtDate start}} – {{fmtDate end}}</span>
         </div>
         {{#if description}}
         <div class="subtitle">{{description}}</div>
@@ -453,7 +491,7 @@
       <article class="cv-entry">
         <div class="cv-entry-header">
           <h3>{{role}} — {{organisation}}</h3>
-          <span class="dates">{{start}} – {{end}}</span>
+          <span class="dates">{{fmtDate start}} – {{fmtDate end}}</span>
         </div>
         {{#if description}}
         <div class="subtitle">{{description}}</div>

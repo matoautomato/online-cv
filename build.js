@@ -23,6 +23,42 @@ const outputDir = outputIdx !== -1 && process.argv[outputIdx + 1]
   : resolve(__dirname, 'dist');
 const outputPath = resolve(outputDir, 'index.html');
 
+// Template helpers
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+// ISO "YYYY-MM" -> "MMM YYYY"; "present" -> "Present"; year-only and anything else pass through.
+// Keeps clean ISO data in the YAML while rendering ATS-friendly dates.
+Handlebars.registerHelper('fmtDate', (value) => {
+  if (value === undefined || value === null) return '';
+  const s = String(value).trim();
+  if (!s) return '';
+  if (/^present$/i.test(s)) return 'Present';
+  const m = s.match(/^(\d{4})-(\d{2})$/);
+  if (m) {
+    const month = MONTHS[parseInt(m[2], 10) - 1];
+    if (month) return `${month} ${m[1]}`;
+  }
+  return s;
+});
+
+// Strip scheme and trailing slash so a URL renders as clean, parseable text (e.g. linkedin.com/in/handle).
+Handlebars.registerHelper('stripScheme', (value) => {
+  if (value === undefined || value === null) return '';
+  return String(value).replace(/^https?:\/\//i, '').replace(/\/+$/, '');
+});
+
+// Self-hosted Inter (OFL) inlined as data URIs so the output stays one self-contained,
+// GDPR-clean HTML file with no external font requests.
+function fontDataUri(file) {
+  const b64 = readFileSync(resolve(__dirname, 'assets/fonts', file)).toString('base64');
+  return `data:font/woff2;base64,${b64}`;
+}
+
+const FONTS = {
+  interNormal: fontDataUri('inter-latin-wght-normal.woff2'),
+  interItalic: fontDataUri('inter-latin-wght-italic.woff2'),
+};
+
 const REQUIRED_FIELDS = ['basics.name', 'basics.title'];
 const RECOMMENDED_FIELDS = ['basics.summary', 'competencies', 'experience'];
 
@@ -90,7 +126,7 @@ function build() {
   const template = Handlebars.compile(templateSource);
 
   // Render and write
-  const html = template(data);
+  const html = template({ ...data, _fonts: FONTS });
   mkdirSync(outputDir, { recursive: true });
   writeFileSync(outputPath, html, 'utf-8');
 
